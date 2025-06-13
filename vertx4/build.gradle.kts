@@ -3,6 +3,7 @@ plugins {
 }
 
 dependencies {
+    implementation(project(":common"))
     implementation("org.slf4j:slf4j-api:2.+")
     implementation("io.vertx:vertx-web:4.+")
     runtimeOnly("org.slf4j:slf4j-simple:2.+")
