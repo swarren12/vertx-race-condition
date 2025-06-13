@@ -11,7 +11,7 @@ import io.vertx.core.http.ServerWebSocketHandshake;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class WebsocketVerticle extends AbstractVerticle {
+public class WebsocketVerticle4 extends AbstractVerticle {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -22,7 +22,7 @@ public class WebsocketVerticle extends AbstractVerticle {
 
     // Constructors
 
-    public WebsocketVerticle(final MessageSource messageSource, final HttpServer httpServer) {
+    public WebsocketVerticle4(final MessageSource messageSource, final HttpServer httpServer) {
         this.messageSource = messageSource;
         this.httpServer = httpServer;
     }
@@ -33,7 +33,7 @@ public class WebsocketVerticle extends AbstractVerticle {
     public void start(final Promise<Void> startPromise) {
         httpServer
                 .webSocketHandshakeHandler(this::connect)
-//                .webSocketHandler(this::connect)
+                .webSocketHandler(this::connect)
                 .listen()
                 .onSuccess(ok -> startPromise.complete())
                 .onFailure(startPromise::fail);
@@ -47,8 +47,7 @@ public class WebsocketVerticle extends AbstractVerticle {
     }
 
     private void connect(final ServerWebSocketHandshake handshake) {
-        handshake.accept()
-                .onSuccess(this::connect);
+        handshake.accept();
     }
 
     private void connect(final ServerWebSocket ws) {

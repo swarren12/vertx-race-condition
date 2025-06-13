@@ -2,7 +2,7 @@ package com.example.vertx;
 
 import com.example.vertx.message.MessageSource;
 import com.example.vertx.message.stub.StubMessageSource;
-import com.example.vertx.verticle.WebsocketVerticle;
+import com.example.vertx.verticle.WebsocketVerticle5;
 import io.vertx.core.Vertx;
 import io.vertx.core.http.HttpServer;
 import io.vertx.core.http.HttpServerOptions;
@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(VertxExtension.class)
-public class WebsocketVerticleIntegrationTest {
+public class WebsocketVerticle5IntegrationTest {
 
     private final MessageSource messageSource = new StubMessageSource();
 
@@ -33,7 +33,7 @@ public class WebsocketVerticleIntegrationTest {
     @BeforeEach
     public void beforeTest(final Vertx vertx, final VertxTestContext context) {
         httpServer = vertx.createHttpServer(new HttpServerOptions().setPort(0));
-        final WebsocketVerticle verticle = new WebsocketVerticle(messageSource, httpServer);
+        final WebsocketVerticle5 verticle = new WebsocketVerticle5(messageSource, httpServer);
 
         final Checkpoint checkpoint = context.checkpoint();
         vertx.deployVerticle(verticle)
